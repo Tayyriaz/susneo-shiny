@@ -12,9 +12,9 @@ SusneoEnergyService <- R6::R6Class(
 
       dplyr::filter(
         df,
-        rlang::.data$date >= as.Date(date_range[[1]]),
-        rlang::.data$date <= as.Date(date_range[[2]]),
-        rlang::.data$site %in% sites
+        .data$date >= as.Date(date_range[[1]]),
+        .data$date <= as.Date(date_range[[2]]),
+        .data$site %in% sites
       )
     },
 
@@ -28,8 +28,8 @@ SusneoEnergyService <- R6::R6Class(
       }
 
       by_day <- df |>
-        dplyr::group_by(rlang::.data$date) |>
-        dplyr::summarise(consumption = sum(rlang::.data$value, na.rm = TRUE), .groups = "drop")
+        dplyr::group_by(.data$date) |>
+        dplyr::summarise(consumption = sum(.data$value, na.rm = TRUE), .groups = "drop")
 
       list(
         total_consumption = sum(df$value, na.rm = TRUE),
@@ -42,14 +42,14 @@ SusneoEnergyService <- R6::R6Class(
       if (is.null(df) || nrow(df) == 0) return(df)
 
       df |>
-        dplyr::group_by(rlang::.data$site, rlang::.data$type) |>
+        dplyr::group_by(.data$site, .data$type) |>
         dplyr::summarise(
-          days = dplyr::n_distinct(rlang::.data$date),
-          total_value = sum(rlang::.data$value, na.rm = TRUE),
-          total_emissions = sum(rlang::.data$carbon_emission_kgco2e, na.rm = TRUE),
+          days = dplyr::n_distinct(.data$date),
+          total_value = sum(.data$value, na.rm = TRUE),
+          total_emissions = sum(.data$carbon_emission_kgco2e, na.rm = TRUE),
           .groups = "drop"
         ) |>
-        dplyr::arrange(dplyr::desc(rlang::.data$total_value))
+        dplyr::arrange(dplyr::desc(.data$total_value))
     }
   )
 )
