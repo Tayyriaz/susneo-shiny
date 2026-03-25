@@ -4,8 +4,8 @@ app_ui <- function() {
     theme = bslib::bs_theme(version = 5, bootswatch = "flatly"),
     bslib::nav_panel(
       "Dashboard",
-      shiny::layout_sidebar(
-        shiny::sidebar(
+      bslib::layout_sidebar(
+        bslib::sidebar(
           mod_data_source_ui("data_source"),
           shiny::hr(),
           shiny::h5("Filters"),

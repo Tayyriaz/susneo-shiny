@@ -12,19 +12,19 @@ mod_dashboard_ui <- function(id) {
     ),
     shiny::br(),
     bslib::layout_columns(
-      shiny::card(
-        shiny::card_header("Consumption over time"),
+      bslib::card(
+        bslib::card_header("Consumption over time"),
         shiny::plotOutput(ns("ts_plot"), height = 280)
       ),
-      shiny::card(
-        shiny::card_header("Consumption by facility"),
+      bslib::card(
+        bslib::card_header("Consumption by facility"),
         shiny::plotOutput(ns("bar_plot"), height = 280)
       ),
       col_widths = c(6, 6)
     ),
     shiny::br(),
-    shiny::card(
-      shiny::card_header("Summary table"),
+    bslib::card(
+      bslib::card_header("Summary table"),
       DT::DTOutput(ns("summary_tbl"))
     )
   )
