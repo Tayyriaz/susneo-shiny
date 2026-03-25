@@ -51,10 +51,10 @@ mod_dashboard_server <- function(id, data, svc) {
       df <- data()
       req(df)
       pdat <- df |>
-        dplyr::group_by(.data$date) |>
-        dplyr::summarise(value = sum(.data$value, na.rm = TRUE), .groups = "drop")
+        dplyr::group_by(rlang::.data$date) |>
+        dplyr::summarise(value = sum(rlang::.data$value, na.rm = TRUE), .groups = "drop")
 
-      ggplot2::ggplot(pdat, ggplot2::aes(x = .data$date, y = .data$value)) +
+      ggplot2::ggplot(pdat, ggplot2::aes(x = rlang::.data$date, y = rlang::.data$value)) +
         ggplot2::geom_line(color = "#2C7FB8", linewidth = 0.8) +
         ggplot2::geom_point(color = "#2C7FB8", size = 1.2) +
         ggplot2::labs(x = NULL, y = "Consumption", caption = "Sum across selected facilities") +
@@ -65,11 +65,11 @@ mod_dashboard_server <- function(id, data, svc) {
       df <- data()
       req(df)
       pdat <- df |>
-        dplyr::group_by(.data$site) |>
-        dplyr::summarise(value = sum(.data$value, na.rm = TRUE), .groups = "drop") |>
-        dplyr::arrange(.data$value)
+        dplyr::group_by(rlang::.data$site) |>
+        dplyr::summarise(value = sum(rlang::.data$value, na.rm = TRUE), .groups = "drop") |>
+        dplyr::arrange(rlang::.data$value)
 
-      ggplot2::ggplot(pdat, ggplot2::aes(x = .data$site, y = .data$value)) +
+      ggplot2::ggplot(pdat, ggplot2::aes(x = rlang::.data$site, y = rlang::.data$value)) +
         ggplot2::geom_col(fill = "#41B6C4") +
         ggplot2::labs(x = NULL, y = "Total consumption") +
         ggplot2::theme_minimal(base_size = 12)
