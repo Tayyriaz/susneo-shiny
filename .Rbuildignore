@@ -1,0 +1,6 @@
+^\\.Rproj\\.user$
+^susneo-shiny-tayyab\\.Rproj$
+^renv$
+^renv\\.lock$
+^\\.github$
+^\\.vscode$
